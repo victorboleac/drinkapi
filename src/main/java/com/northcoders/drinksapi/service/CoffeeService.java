@@ -11,8 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class CoffeeService {
     private static final AtomicInteger idGenerator = new AtomicInteger(1);
 
-    @Autowired
-    CoffeeService coffeeService;
 
     public static Coffee makeCoffee(String coffeeName) {
         return new Coffee(idGenerator.getAndIncrement(), coffeeName);

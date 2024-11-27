@@ -1,6 +1,5 @@
 package com.northcoders.drinksapi.controller;
 
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -11,30 +10,30 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @AutoConfigureMockMvc
 @SpringBootTest
-public class HomeControllerTests {
+public class CoffeeControllerTest {
 
     @Autowired
     private MockMvc mockMvcController;
 
     @Test
-    public void testGetHome() throws Exception {
+    public void testGetCoffeeByName() throws Exception {
 
-        String expectedContent = "Welcome to the Drinks API!";
+        String coffeeName = "cappuccino";
 
         this.mockMvcController.perform(
-                        MockMvcRequestBuilders.get("/"))
+                        MockMvcRequestBuilders.get("/coffee").param("name", coffeeName))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(expectedContent));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value(coffeeName))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
     }
 
     @Test
-    public void testGetCoffeelover() throws Exception {
-
-        String expectedContent = "I like coffee";
+    public void testGetCoffeeByDefault() throws Exception {
 
         this.mockMvcController.perform(
-                        MockMvcRequestBuilders.get("/coffeelover"))
+                        MockMvcRequestBuilders.get("/coffee"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.content().string(expectedContent));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("latte"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(2));
     }
 }

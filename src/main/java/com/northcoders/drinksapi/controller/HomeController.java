@@ -11,4 +11,8 @@ public class HomeController {
         return "Welcome to the Drinks API!";
     }
 
+    @GetMapping("/coffeelover")
+    public String getCoffeelover() {
+        return "I like coffee";
+    }
 }

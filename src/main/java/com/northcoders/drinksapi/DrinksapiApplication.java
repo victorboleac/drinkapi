@@ -10,4 +10,5 @@ public class DrinksapiApplication {
 		SpringApplication.run(DrinksapiApplication.class, args);
 	}
 
+
 }

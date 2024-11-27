@@ -37,4 +37,14 @@ public class HomeControllerTests {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string(expectedContent));
     }
+    @Test
+    public void testGetHealth() throws Exception {
+
+        String expectedContent = "Server is running";
+
+        this.mockMvcController.perform(
+                        MockMvcRequestBuilders.get("/health"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string(expectedContent));
+    }
 }

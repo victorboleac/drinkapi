@@ -15,4 +15,9 @@ public class HomeController {
     public String getCoffeelover() {
         return "I like coffee";
     }
+
+    @GetMapping("/health")
+    public String getHealth() {
+        return "Server is running";
+    }
 }
